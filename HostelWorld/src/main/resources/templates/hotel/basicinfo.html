@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Hotel BasicInfo</title>
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+</head>
+<body style="font-family: 'Microsoft YaHei UI'">
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/login">Hostel World</a>
+        </div>
+        <!-- /.navbar-header -->
+        <ul class="nav navbar-top-links navbar-right">
+            <span style="font-size: 15px" th:text="${hotelInfo.hotelName}"></span>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a th:href="'/hotel/'+${hotelInfo.id}+'/basicinfo'"><i class="fa fa-user fa-fw"></i> 基本信息</a>
+                    </li>
+                    <li><a th:href="'/hotel/'+${hotelInfo.id}+'/edit'"><i class="fa fa-gear fa-fw"></i> 客栈信息修改</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="/login"><i class="fa fa-sign-out fa-fw"></i> 退出登录</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
+        <!-- /.navbar-top-links -->
+        <div class="navbar-default sidebar" role="navigation" style="font-size: 16px">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search">
+                        <!-- /input-group -->
+                    </li>
+                    <li class="active">
+                        <a th:href="'/hotel/'+${hotelInfo.id}+'/basicinfo'" style="padding-top: 15px;padding-bottom: 15px"><i class="fa fa-dashboard fa-fw"></i> 客栈基本信息</a>
+                    </li>
+                    <li>
+                        <a th:href="'/hotel/'+${hotelInfo.id}+'/edit'" style="padding-top: 15px;padding-bottom: 15px"><i class="fa fa-dashboard fa-fw"></i> 客栈信息修改</a>
+                    </li>
+                    <li>
+                        <a th:href="'/hotel/'+${hotelInfo.id}+'/accomodation'" style="padding-top: 15px;padding-bottom: 15px"><i class="fa fa-dashboard fa-fw"></i> 预约入住管理</a>
+                    </li>
+                    <li>
+                        <a th:href="'/hotel/'+${hotelInfo.id}+'/rooms'" style="padding-top: 15px;padding-bottom: 15px"><i class="fa fa-dashboard fa-fw"></i> 客栈房间管理</a>
+                    </li>
+                    <li>
+                        <a th:href="'/hotel/'+${hotelInfo.id}+'/detailinfo'" style="padding-top: 15px;padding-bottom: 15px"><i class="fa fa-dashboard fa-fw"></i> 统计信息</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav>
+
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header">客栈基本信息</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <i class="fa fa-home fa-fw fa-2x"></i>
+                                <span style="font-size: 25px" th:text="${hotelInfo.hotelName}"></span>
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="list-group">
+                                    <a href="" class="list-group-item">
+                                        <i class="fa fa-tag fa-fw"></i> 标志码：
+                                        <span class="pull-right text-muted">
+                                            <em th:text="${hotelInfo.identitynum}"></em>
+                                        </span>
+                                    </a>
+                                    <a href="" class="list-group-item">
+                                        <i class="fa fa-location-arrow fa-fw"></i> 地址：
+                                        <span class="pull-right text-muted">
+                                            <em th:text="${hotelInfo.address}"></em>
+                                        </span>
+                                    </a>
+                                    <a href="" class="list-group-item">
+                                        <i class="fa fa-comments fa-fw"></i> 简介：
+                                        <span class="pull-right text-muted">
+                                            <em th:text="${hotelInfo.description}"></em>
+                                        </span>
+                                    </a>
+                                    <a href="" class="list-group-item">
+                                        <i class="fa fa-retweet fa-fw"></i> 单人间数：
+                                        <span class="pull-right text-muted">
+                                            <em th:text="${hotelInfo.singleTotal}"></em>
+                                        </span>
+                                    </a>
+                                    <a href="" class="list-group-item">
+                                        <i class="fa fa-retweet fa-fw"></i> 双人间数：
+                                        <span class="pull-right text-muted">
+                                            <em th:text="${hotelInfo.doubleTotal}"></em>
+                                        </span>
+                                    </a>
+                                    <a href="" class="list-group-item">
+                                        <i class="fa fa-retweet fa-fw"></i> 套间数：
+                                        <span class="pull-right text-muted">
+                                            <em th:text="${hotelInfo.flatTotal}"></em>
+                                        </span>
+                                    </a>
+                                    <a href="" class="list-group-item">
+                                        <i class="fa fa-retweet fa-fw"></i> 豪华间数：
+                                        <span class="pull-right text-muted">
+                                            <em th:text="${hotelInfo.deluxeTotal}"></em>
+                                        </span>
+                                    </a>
+                                </div>
+                                <!-- /.list-group -->
+                            </div>
+                            <!-- /.panel-body -->
+
+                        </div>
+
+                    </div>
+                    <div class="col-lg-8">
+
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <i class="fa fa-clock-o fa-fw fa-2x"></i>
+                                <span style="font-size: 25px">计划持续至：</span>
+                                <span style="font-size: 25px" th:text="${hotelInfo.planDate}"></span>
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>房间类型</th>
+                                            <th>总计划数</th>
+                                            <th>已预约</th>
+                                            <th>已入住</th>
+                                            <th>价格/天</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="planInfo: ${hotelInfo.planInfos}">
+                                            <td th:text="${planInfo.type}"></td>
+                                            <td th:text="${planInfo.plannum}"></td>
+                                            <td th:text="${planInfo.ordernum}"></td>
+                                            <td th:text="${planInfo.staynum}"></td>
+                                            <td th:text="${planInfo.price}"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-wrapper -->
+
+</div>
+
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/vendor/metisMenu/metisMenu.min.js"></script>
+<script src="/dist/js/sb-admin-2.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(
+        function() {
+            if(GetQueryString("result")!=null)
+                alert(GetQueryString("result"));
+        }
+    );
+
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+
+</script>
+
+</body>
+</html>

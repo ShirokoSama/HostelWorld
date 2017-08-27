@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Hotel Approval</title>
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+</head>
+<body style="font-family: 'Microsoft YaHei UI'">
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/login">Hostel World</a>
+        </div>
+        <!-- /.navbar-header -->
+        <ul class="nav navbar-top-links navbar-right">
+            <span style="font-size: 15px" th:text="${managerInfo.managerName}"></span>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a th:href="'/manager/'+${managerInfo.id}+'/approval'"><i class="fa fa-user fa-fw"></i> 客栈审批</a>
+                    </li>
+                    <li><a th:href="'/manager/'+${managerInfo.id}+'/settlement'"><i class="fa fa-gear fa-fw"></i> 账单结算</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="/login"><i class="fa fa-sign-out fa-fw"></i> 退出登录</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
+        <!-- /.navbar-top-links -->
+        <div class="navbar-default sidebar" role="navigation" style="font-size: 16px">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search">
+                        <!-- /input-group -->
+                    </li>
+                    <li>
+                        <a th:href="'/manager/'+${managerInfo.id}+'/approval'" style="padding-top: 15px;padding-bottom: 15px"><i class="fa fa-dashboard fa-fw"></i> 客栈审批</a>
+                    </li>
+                    <li>
+                        <a th:href="'/manager/'+${managerInfo.id}+'/settlement'" style="padding-top: 15px;padding-bottom: 15px"><i class="fa fa-dashboard fa-fw"></i> 账单结算</a>
+                    </li>
+                    <li>
+                        <a th:href="'/manager/'+${managerInfo.id}+'/hotelinfos'" style="padding-top: 15px;padding-bottom: 15px"><i class="fa fa-dashboard fa-fw"></i> 客栈信息查看</a>
+                    </li>
+                    <li class="active">
+                        <a th:href="'/manager/'+${managerInfo.id}+'/memberinfos'" style="padding-top: 15px;padding-bottom: 15px"><i class="fa fa-dashboard fa-fw"></i> 会员信息查看</a>
+                    </li>
+                    <li>
+                        <a th:href="'/manager/'+${managerInfo.id}+'/finance'" style="padding-top: 15px;padding-bottom: 15px"><i class="fa fa-dashboard fa-fw"></i> 财务统计</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav>
+
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header">会员信息</h3>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4" th:each="memberInfo: ${memberInfos}">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <i class="fa fa-user fa-fw fa-2x"></i>
+                            <span style="font-size: 25px" th:text="${memberInfo.name}"></span>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="list-group">
+                                <a href="" class="list-group-item">
+                                    <i class="fa fa-user fa-fw"></i> 用户名：
+                                    <span class="pull-right text-muted">
+                                            <em th:text="${memberInfo.name}"></em>
+                                        </span>
+                                </a>
+                                <a href="" class="list-group-item">
+                                    <i class="fa fa-credit-card fa-fw"></i> 会员卡状态：
+                                    <span class="pull-right text-muted">
+                                            <em th:text="${memberInfo.status}"></em>
+                                        </span>
+                                </a>
+                                <a href="" class="list-group-item">
+                                    <i class="fa fa-barcode fa-fw"></i> 会员卡识别码：
+                                    <span class="pull-right text-muted">
+                                        <em th:text="${memberInfo.identitynum}"></em>
+                                    </span>
+                                </a>
+                                <a href="" class="list-group-item">
+                                    <i class="fa fa-money fa-fw"></i> 会员卡余额：
+                                    <span class="pull-right text-muted">
+                                        <em th:text="${memberInfo.money}"></em>
+                                    </span>
+                                </a>
+                                <a href="" class="list-group-item">
+                                    <i class="fa fa-level-up fa-fw"></i> 会员等级：
+                                    <span class="pull-right text-muted">
+                                        <em th:text="${memberInfo.level}"></em>
+                                    </span>
+                                </a>
+                                <a href="" class="list-group-item">
+                                    <i class="fa fa-sitemap fa-fw"></i> 累计消费金额：
+                                    <span class="pull-right text-muted">
+                                        <em th:text="${memberInfo.costcount}"></em>
+                                    </span>
+                                </a>
+                                <a href="" class="list-group-item">
+                                    <i class="fa fa-star fa-fw"></i> 会员积分：
+                                    <span class="pull-right text-muted">
+                                        <em th:text="${memberInfo.score}"></em>
+                                    </span>
+                                </a>
+                            </div>
+                            <!-- /.list-group -->
+                            <a th:href="'/manager/'+${managerInfo.id}+'/memberdetailinfo/'+${memberInfo.id}" class="btn btn-default btn-block">预约与账单</a>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /#page-wrapper -->
+
+</div>
+
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/vendor/metisMenu/metisMenu.min.js"></script>
+<script src="/dist/js/sb-admin-2.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(
+        function() {
+            if(GetQueryString("result")!=null)
+                alert(GetQueryString("result"));
+        }
+    );
+
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+
+</script>
+
+</body>
+</html>

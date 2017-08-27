@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Hotel Approval</title>
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+</head>
+<body style="font-family: 'Microsoft YaHei UI'">
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/login">Hostel World</a>
+        </div>
+        <!-- /.navbar-header -->
+        <ul class="nav navbar-top-links navbar-right">
+            <span style="font-size: 15px" th:text="${managerInfo.managerName}"></span>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a th:href="'/manager/'+${managerInfo.id}+'/approval'"><i class="fa fa-user fa-fw"></i> 客栈审批</a>
+                    </li>
+                    <li><a th:href="'/manager/'+${managerInfo.id}+'/settlement'"><i class="fa fa-gear fa-fw"></i> 账单结算</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="/login"><i class="fa fa-sign-out fa-fw"></i> 退出登录</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
+        <!-- /.navbar-top-links -->
+        <div class="navbar-default sidebar" role="navigation" style="font-size: 16px">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search">
+                        <!-- /input-group -->
+                    </li>
+                    <li>
+                        <a th:href="'/manager/'+${managerInfo.id}+'/approval'" style="padding-top: 15px;padding-bottom: 15px"><i class="fa fa-dashboard fa-fw"></i> 客栈审批</a>
+                    </li>
+                    <li>
+                        <a th:href="'/manager/'+${managerInfo.id}+'/settlement'" style="padding-top: 15px;padding-bottom: 15px"><i class="fa fa-dashboard fa-fw"></i> 账单结算</a>
+                    </li>
+                    <li>
+                        <a th:href="'/manager/'+${managerInfo.id}+'/hotelinfos'" style="padding-top: 15px;padding-bottom: 15px"><i class="fa fa-dashboard fa-fw"></i> 客栈信息查看</a>
+                    </li>
+                    <li class="active">
+                        <a th:href="'/manager/'+${managerInfo.id}+'/memberinfos'" style="padding-top: 15px;padding-bottom: 15px"><i class="fa fa-dashboard fa-fw"></i> 会员信息查看</a>
+                    </li>
+                    <li>
+                        <a th:href="'/manager/'+${managerInfo.id}+'/finance'" style="padding-top: 15px;padding-bottom: 15px"><i class="fa fa-dashboard fa-fw"></i> 财务统计</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav>
+
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header">会员预约账户信息</h3>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <span>会员预约信息</span>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>预约号</th>
+                                    <th>客栈名称</th>
+                                    <th>房间类型</th>
+                                    <th>房间数量</th>
+                                    <th>预约天数</th>
+                                    <th>预约花费</th>
+                                    <th>预约状态</th>
+                                    <th>预约日期</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="appointmentInfo: ${appointmentInfos}">
+                                    <td th:text="${appointmentInfo.identitynum}"></td>
+                                    <td th:text="${appointmentInfo.hotelName}"></td>
+                                    <td th:text="${appointmentInfo.type}"></td>
+                                    <td th:text="${appointmentInfo.num}"></td>
+                                    <td th:text="${appointmentInfo.days}"></td>
+                                    <td th:text="${appointmentInfo.cost}"></td>
+                                    <td th:text="${appointmentInfo.status}"></td>
+                                    <td th:text="${appointmentInfo.date}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <span>会员账户信息</span>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>账单编号</th>
+                                    <th>客栈名称</th>
+                                    <th>账单类型</th>
+                                    <th>账单状态</th>
+                                    <th>金额变化</th>
+                                    <th>生成日期</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="accountInfo: ${accountInfos}">
+                                    <td th:text="${accountInfo.id}"></td>
+                                    <td th:text="${accountInfo.hotelName}"></td>
+                                    <td th:text="${accountInfo.type}"></td>
+                                    <td th:text="${accountInfo.status}"></td>
+                                    <td th:text="${accountInfo.cost}"></td>
+                                    <td th:text="${accountInfo.date}"></td>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /#page-wrapper -->
+
+</div>
+
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/vendor/metisMenu/metisMenu.min.js"></script>
+<script src="/dist/js/sb-admin-2.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(
+        function() {
+            if(GetQueryString("result")!=null)
+                alert(GetQueryString("result"));
+        }
+    );
+
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+
+</script>
+
+</body>
+</html>

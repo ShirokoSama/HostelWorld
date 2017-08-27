@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Appointment</title>
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+</head>
+<body style="font-family: 'Microsoft YaHei UI'">
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/login">Hostel World</a>
+        </div>
+        <!-- /.navbar-header -->
+        <ul class="nav navbar-top-links navbar-right">
+            <span style="font-size: 15px" th:text="${memberInfo.name}"></span>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a th:href="'/member/'+${memberInfo.id}+'/basicinfo'"><i class="fa fa-user fa-fw"></i> 基本信息</a>
+                    </li>
+                    <li><a th:href="'/member/'+${memberInfo.id}+'/edit'"><i class="fa fa-gear fa-fw"></i> 修改卡信息</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="/login"><i class="fa fa-sign-out fa-fw"></i> 退出登录</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
+        <!-- /.navbar-top-links -->
+        <div class="navbar-default sidebar" role="navigation" style="font-size: 16px">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search">
+                        <!-- /input-group -->
+                    </li>
+                    <li>
+                        <a th:href="'/member/'+${memberInfo.id}+'/basicinfo'" style="padding-top: 15px;padding-bottom: 15px"><i class="fa fa-dashboard fa-fw"></i> 基本信息</a>
+                    </li>
+                    <li>
+                        <a th:href="'/member/'+${memberInfo.id}+'/edit'" style="padding-top: 15px;padding-bottom: 15px"><i class="fa fa-dashboard fa-fw"></i> 修改卡信息</a>
+                    </li>
+                    <li class="active">
+                        <a th:href="'/member/'+${memberInfo.id}+'/appointment'" style="padding-top: 15px;padding-bottom: 15px"><i class="fa fa-dashboard fa-fw"></i> 客栈预定</a>
+                    </li>
+                    <li>
+                        <a th:href="'/member/'+${memberInfo.id}+'/myorder'" style="padding-top: 15px;padding-bottom: 15px"><i class="fa fa-dashboard fa-fw"></i> 我的预定</a>
+                    </li>
+                    <li>
+                        <a th:href="'/member/'+${memberInfo.id}+'/myaccount'" style="padding-top: 15px;padding-bottom: 15px"><i class="fa fa-dashboard fa-fw"></i> 统计信息</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav>
+
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">客栈预约</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div th:each="hotelInfo: ${hotelInfos}" class="col-lg-4">
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <i class="fa fa-home fa-fw fa-2x"></i>
+                            <span style="font-size: 25px" th:text="${hotelInfo.hotelName}"></span>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="list-group">
+                                <a href="" class="list-group-item">
+                                    <i class="fa fa-tag fa-fw"></i> 标志码：
+                                    <span class="pull-right text-muted">
+                                            <em th:text="${hotelInfo.identitynum}"></em>
+                                        </span>
+                                </a>
+                                <a href="" class="list-group-item">
+                                    <i class="fa fa-location-arrow fa-fw"></i> 地址：
+                                    <span class="pull-right text-muted">
+                                            <em th:text="${hotelInfo.address}"></em>
+                                        </span>
+                                </a>
+                                <a href="" class="list-group-item">
+                                    <i class="fa fa-comments fa-fw"></i> 简介：
+                                    <span class="pull-right text-muted">
+                                            <em th:text="${hotelInfo.description}"></em>
+                                        </span>
+                                </a>
+                                <a href="" class="list-group-item">
+                                    <i class="fa fa-retweet fa-fw"></i> 单人间剩余数：
+                                    <span class="pull-right text-muted">
+                                            <em th:text="${hotelInfo.singleRemain}"></em>
+                                        </span>
+                                </a>
+                                <a href="" class="list-group-item">
+                                    <i class="fa fa-rmb fa-fw"></i> 单人间价格：
+                                    <span class="pull-right text-muted">
+                                            <em th:text="${hotelInfo.singlePrice}"></em>
+                                        </span>
+                                </a>
+                                <a href="" class="list-group-item">
+                                    <i class="fa fa-retweet fa-fw"></i> 双人间剩余数：
+                                    <span class="pull-right text-muted">
+                                            <em th:text="${hotelInfo.doubleRemain}"></em>
+                                        </span>
+                                </a>
+                                <a href="" class="list-group-item">
+                                    <i class="fa fa-rmb fa-fw"></i> 双人间价格：
+                                    <span class="pull-right text-muted">
+                                            <em th:text="${hotelInfo.doublePrice}"></em>
+                                        </span>
+                                </a>
+                                <a href="" class="list-group-item">
+                                    <i class="fa fa-retweet fa-fw"></i> 套间剩余数：
+                                    <span class="pull-right text-muted">
+                                            <em th:text="${hotelInfo.flatRemain}"></em>
+                                        </span>
+                                </a>
+                                <a href="" class="list-group-item">
+                                    <i class="fa fa-rmb fa-fw"></i> 套间价格：
+                                    <span class="pull-right text-muted">
+                                            <em th:text="${hotelInfo.flatPrice}"></em>
+                                        </span>
+                                </a>
+                                <a href="" class="list-group-item">
+                                    <i class="fa fa-retweet fa-fw"></i> 豪华间剩余数：
+                                    <span class="pull-right text-muted">
+                                            <em th:text="${hotelInfo.deluxeRemain}"></em>
+                                        </span>
+                                </a>
+                                <a href="" class="list-group-item">
+                                    <i class="fa fa-rmb fa-fw"></i> 豪华间价格：
+                                    <span class="pull-right text-muted">
+                                            <em th:text="${hotelInfo.deluxePrice}"></em>
+                                        </span>
+                                </a>
+                            </div>
+                            <!-- /.list-group -->
+                            <a href="" class="btn btn-default btn-block" data-toggle="modal" th:attr="data-target='#'+${hotelInfo.id}">
+                                预约
+                            </a>
+                        </div>
+                        <!-- /.panel-body -->
+
+                        <div class="modal fade" th:id="${hotelInfo.id}" tabindex="-1" role="dialog"
+                             aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form th:action="'/member/'+${memberInfo.id}+'/appointment/'+${hotelInfo.id}" method="post">
+                                        <div class="modal-header">
+                                            <span th:text="${hotelInfo.hotelName}"></span>
+                                            <span>客栈预约</span>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label>Roles</label>
+                                                <select class="form-control" name="type">
+                                                    <option>单人间</option>
+                                                    <option>双人间</option>
+                                                    <option>套间</option>
+                                                    <option>豪华间</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>房间数量</label>
+                                                <input class="form-control" placeholder="" name="num" type="text">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>预定天数</label>
+                                                <input class="form-control" placeholder="" name="days" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                            <button type="submit" class="btn btn-primary">预约</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-wrapper -->
+
+</div>
+
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/vendor/metisMenu/metisMenu.min.js"></script>
+<script src="/dist/js/sb-admin-2.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(
+        function() {
+            if(GetQueryString("result")!=null)
+                alert(GetQueryString("result"));
+        }
+    );
+
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+
+</script>
+
+</body>
+</html>
